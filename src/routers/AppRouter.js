@@ -14,7 +14,8 @@ import Header from '../components/Header';
         <Switch>
         <Route path="/" component={ExpenseDashboardPage} exact={true} />
         <Route path="/create" component={AddExpensePage} />
-        <Route path="/edit" component={EditExpensePage} />
+        {/* link is below is not needed because there is no direct nav to edit */}
+        {/* <Route path="/edit/:id" component={EditExpensePage} /> */}
         <Route path="/help" component={HelpPage} />
         <Route component={NotFoundPage} />
       </Switch>
