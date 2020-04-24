@@ -1,17 +1,17 @@
 import React from "react";
-import { connect } from 'react-redux';
-import { removeExpense } from '../actions/expenses';
+import { Link } from "react-router-dom";
 
 // data is not persisted yet, refreshing brings the deleted items back
-const ExpenseListItem = ({ dispatch, id, description, amount, createdAt }) => (
-   <div>
-       <h3>{description}</h3>
-       <p>{amount} - {createdAt}</p>
-       <button onClick={() => {
-           dispatch(removeExpense({ id }));
-       }}>Remove</button>
-   </div>
+const ExpenseListItem = ({ id, description, amount, createdAt }) => (
+  <div>
+    <Link to={`/edit/${id}`}>
+      <h3>{description}</h3>
+    </Link>
+    <p>
+      {amount} - {createdAt}
+    </p>
+  </div>
 );
 
 // we dont need anything from the state so we do not need mapStateToProps
-export default connect()(ExpenseListItem);
+export default ExpenseListItem;
