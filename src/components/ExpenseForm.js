@@ -1,8 +1,6 @@
 import React from "react";
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
-import 'react-dates/initialize';
 
 const now = moment();
 console.log(now.format('MMM Do, YYYY'));
@@ -15,7 +13,7 @@ export default class ExpenseForm extends React.Component {
       description: props.expense ? props.expense.description : '',
       note: props.expense ? props.expense.note : '',
       amount: props.expense ? (props.expense.amount / 100).toString() : '',
-      createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+      createdAt: props.expense ? moment(props.expense.createdAt) : moment(), // we grab the moment NOW here
       calendarFocused: false,
       error: ''
   };
@@ -56,7 +54,7 @@ export default class ExpenseForm extends React.Component {
         this.props.onSubmit({
           description: this.state.description,
           amount: parseFloat(this.state.amount, 10) * 100, //amount is a string so we need to parse this
-          createdAt: this.state.createdAt.valueOf, //createdAt is a Moment variable so we need to call value of
+          createdAt: this.state.createdAt.valueOf(), //createdAt is a Moment variable so we need to call value of
           note: this.state.note
         });
       }
